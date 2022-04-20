@@ -5,9 +5,11 @@ public class Main {
     public static void main(String[] args) {
 //        Product product;
         List<Product> listProduct = new ArrayList<>();
+        List<Product> listManufacturerProduct = new ArrayList<>();
+        List<Product> listRatingProduct = new ArrayList<>();
         List<Product> payListProduct = new ArrayList<>();
         Set<String> criterionManufacture = new HashSet<>();
-        Set<Integer> criterionRating= new HashSet<>();
+        Set<Integer> criterionRating = new HashSet<>();
 
         addListProduct(listProduct);
 
@@ -51,22 +53,57 @@ public class Main {
                         switch (choiceNumberMenu3) {
                             case 1:
 
+                                for (int i = 0; i < listProduct.size(); i++) {
+
+
+                                    criterionManufacture.add(listProduct.get(i).getManufacturerProduct());
+
+                                    //  criterionRating.add(listProduct.get(i).getRatingProduct());
+
+                                }
+                                System.out.println(criterionManufacture.toString());
+                                while (true) {
+                                    temp = scanner.nextLine();
+                                    if (temp.equals("end")) {
+                                        break;
+                                    }
+
+                                    for (int i = 0; i < listProduct.size(); i++) {
+
+                                        if (listProduct.get(i).getManufacturerProduct().equals(temp)) {
+                                            listManufacturerProduct.add(listProduct.get(i));
+                                            System.out.println(i + 1 + " - " + listProduct.get(i).getNameProduct() + ", " + listProduct.get(i).getPriceProduct());
+                                        }
+                                    }
+                                    toPayFromList(listManufacturerProduct, payListProduct, scanner);
+
                                 }
 
 
-                        for (int i = 0; i < listProduct.size(); i++) {
+                                break;
+                            case 2:
 
-                            if (choiceNumberMenu3 == 1) {
-                                criterionManufacture.add(listProduct.get(i).getManufacturerProduct());
-                            } else {
-                                criterionRating.add(listProduct.get(i).getRatingProduct());
-                            }
+                                while (true) {
+                                    System.out.println("Укажите рейтинг товара, ниже которого не отображать товар (1-5), Выход - end");
+                                    temp = scanner.nextLine();
+                                    if (temp.equals("end")) {
+                                        break;
+                                    }
+                                    int choiceNumber1 = Integer.parseInt(temp);
 
-                            System.out.println(criterion.toString());
+                                    for (int i = 0; i < listProduct.size(); i++) {
 
+                                        if (listProduct.get(i).getRatingProduct()>=choiceNumber1) {
+                                            listRatingProduct.add(listProduct.get(i));
+                                            System.out.println(i + 1 + " - " + listProduct.get(i).getNameProduct() + ", " + listProduct.get(i).getPriceProduct());
+                                        }
+                                    }
+                                    toPayFromList(listRatingProduct, payListProduct, scanner);
+
+                                }
+                                break;
 
                         }
-
                         //  System.out.println(products.getNameProduct() + ", " + products.getPriceProduct());
 
 
@@ -81,37 +118,36 @@ public class Main {
         }
     }
 
-        public static void addListProduct (List < Product > listProduct) {
-            listProduct.add(new Product("Хлеб", "Хлебзавод", 50, 5, 10));
-            listProduct.add(new Product("Булка", "Хлебзавод", 90, 5, 10));
-            listProduct.add(new Product("Гречка", "Севзапас", 150, 4, 500));
-            listProduct.add(new Product("Молоко", "Севзапас", 90, 4, 150));
-            listProduct.add(new Product("Яблоко", "Житница", 200, 3, 120));
-            listProduct.add(new Product("Лапша", "Житница", 100, 2, 600));
-            listProduct.add(new Product("Чай", "Севзапас", 250, 5, 1000));
-
-
-        }
-
-        public static void toPayFromList (List < Product > listProduct, List < Product > payListProduct, Scanner scanner)
-        {
-            while (true) {
-                System.out.println("Выберите продукт из списка, end - Выход");
-                for (int i = 0; i < listProduct.size(); i++) {
-                    System.out.println(i + 1 + " - " + listProduct.get(i).getNameProduct() + ", " + listProduct.get(i).getPriceProduct());
-                }
-
-                String temp = scanner.nextLine();
-                if (temp.equals("end")) {
-                    break;
-                }
-                int choiceNumberMenu2 = Integer.parseInt(temp);
-
-                payListProduct.add(listProduct.get(choiceNumberMenu2 - 1));
-                System.out.println(payListProduct);
-            }
-
-        }
+    public static void addListProduct(List<Product> listProduct) {
+        listProduct.add(new Product("Хлеб", "Хлебзавод", 50, 5, 10));
+        listProduct.add(new Product("Булка", "Хлебзавод", 90, 5, 10));
+        listProduct.add(new Product("Гречка", "Севзапас", 150, 4, 500));
+        listProduct.add(new Product("Молоко", "Севзапас", 90, 4, 150));
+        listProduct.add(new Product("Яблоко", "Житница", 200, 3, 120));
+        listProduct.add(new Product("Лапша", "Житница", 100, 2, 600));
+        listProduct.add(new Product("Чай", "Севзапас", 250, 5, 1000));
 
 
     }
+
+    public static void toPayFromList(List<Product> listProduct, List<Product> payListProduct, Scanner scanner) {
+        while (true) {
+            System.out.println("Выберите продукт из списка, end - Выход");
+            for (int i = 0; i < listProduct.size(); i++) {
+                System.out.println(i + 1 + " - " + listProduct.get(i).getNameProduct() + ", " + listProduct.get(i).getPriceProduct());
+            }
+
+            String temp = scanner.nextLine();
+            if (temp.equals("end")) {
+                break;
+            }
+            int choiceNumberMenu2 = Integer.parseInt(temp);
+
+            payListProduct.add(listProduct.get(choiceNumberMenu2 - 1));
+            System.out.println(payListProduct);
+        }
+
+    }
+
+
+}

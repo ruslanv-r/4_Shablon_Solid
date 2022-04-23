@@ -1,4 +1,4 @@
-public class Product {
+public class Product implements SummaAll {
 
     private String nameProduct;
     private String manufacturerProduct;
@@ -62,5 +62,10 @@ public class Product {
                 ", Цена - " + priceProduct +
                 ", Рейтинг - " + ratingProduct + '\'' +
                 ", Срок годности -" + lifeProduct + '\'';
+    }
+
+    @Override
+    public int add(int sum) {
+        return 0;
     }
 }

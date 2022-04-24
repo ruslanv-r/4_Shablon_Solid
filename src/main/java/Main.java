@@ -20,7 +20,11 @@ public class Main {
      *для наглядного примера ввел два интерфейса PaySend и ReturnSend
      * в классе Send имплементировал их
      */
+
+
+
     public static void main(String[] args) {
+
         PaySend paySend = new Send();
         ReturnSend returnSend = new Send();
 
@@ -216,9 +220,6 @@ public class Main {
 
             payListProduct.remove(choiceNumberMenu2 - 1);
 
-
-
-
             System.out.println(payListProduct);
         }
     }
@@ -273,7 +274,7 @@ public class Main {
                                              List<String> listLogg, PaySend paySend, Check check) {
 
         while (true) {
-            System.out.println("Укажите рейтинг товара, ниже которого не отображать товар (1-5), Выход - end");
+            System.out.println("Укажите рейтинг товара, ниже которого не отображать товар (" + Product.minRating+" - " + Product.maxRating+"), Выход - end"); // магич цифры
             String temp = scanner.nextLine();
             if (temp.equals("end")) {
                 break;
@@ -295,6 +296,5 @@ public class Main {
             }
             toPayFromList(listRatingProduct, payListProduct, scanner, logger, listLogg, paySend, check);
         }
-
     }
 }

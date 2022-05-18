@@ -1,4 +1,4 @@
-public class Product implements SummaAll {
+public class Product {
 
     final static int minRating = 1;
     final static int maxRating = 5;
@@ -46,13 +46,13 @@ public class Product implements SummaAll {
     }
 
     public void setRatingProduct(int ratingProduct) {
-        if (ratingProduct >= minRating && ratingProduct <= maxRating){
+        if (ratingProduct >= minRating && ratingProduct <= maxRating) {
             this.ratingProduct = ratingProduct;
-        } else{
+        } else {
             System.out.println("Рейтинг задан вне диапазона");
         }
 
-            this.ratingProduct = ratingProduct;
+        this.ratingProduct = ratingProduct;
     }
 
     public int getLifeProduct() {
@@ -73,8 +73,4 @@ public class Product implements SummaAll {
                 ", Срок годности -" + lifeProduct + '\'';
     }
 
-    @Override
-    public int add(int sum) {
-        return 0;
-    }
 }

@@ -7,6 +7,21 @@ public class Main {
      * код отформатирован
      * */
 
+
+    /* Принцип Open-closed
+    В классе Product конструктор имеет 5 параметров, но мне понадобился продукт который имеет
+    дополнительно еще параметр - цвет, соответственно что бы не менять класс Product, был введен
+    ему класс потомок ProductColor, в котором создаются объекты с теми же параметрами и плюс параметр - цвет
+     в строке 115 в List был добавлен объект с более широким перечнем параметров
+
+    */
+
+    /* принцип Liscov substitution
+    Введя класс потомок ProductColor, также выполнился данный принцип, т.к. родительский класс и класс потомок
+    задаются одинаковыми параметрами , например рейтинг от 1 до 5
+     */
+
+
     /*
     Dependency inversion principle
     был создан интерфейс Logger и класс LoggerFles
@@ -97,6 +112,7 @@ public class Main {
         listProduct.add(new Product("Яблоко", "Житница", 200, 3, 120));
         listProduct.add(new Product("Лапша", "Житница", 100, 2, 600));
         listProduct.add(new Product("Чай", "Севзапас", 250, 5, 1000));
+        listProduct.add(new ProductColor("Кофе", "Севзапас", 300, 5, 1000,"Black"));
     }
 
     public static void toPayFromList(List<Product> listProduct, List<Product> payListProduct,
